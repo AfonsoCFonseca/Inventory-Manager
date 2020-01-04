@@ -1,0 +1,9 @@
+Libraries needed 
+    -g webpack
+    -g webpack-cli
+
+For watch
+    webpack --watch --progress
+
+
+webpack, sass, react, typescript
