@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Item } from "../components/item/Item";
-import { Utils } from "../Utils";
+import { utils } from "../Utils";
 
 export class Draw {
   static item(i: number, item: Item): JSX.Element {

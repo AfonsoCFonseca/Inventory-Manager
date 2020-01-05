@@ -1,17 +1,29 @@
+$color-primary: #f8e5c5;
+$color-primary-light: #fff6e6;
+
+$grey: #d1d1d1;
+$grey-dark: #6f6a61;
+
+$black: #303030;
+
+p {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
 .interface {
-  background-color: #fff6e6;
+  background-color: $color-primary-light;
   position: absolute;
   height: 100%;
   > .logs {
-    margin: 50px;
+    margin: 20px;
     height: 220px;
     background-color: white;
     border-radius: 5px;
-    border: 1px solid #d1d1d1;
+    border: 1px solid $grey;
     padding: 15px;
     overflow-y: scroll;
     > .message {
-      color: #303030;
+      color: $black;
       margin: 0;
       margin-bottom: 5px;
 
@@ -22,12 +34,13 @@
   }
 
   > .inventory {
-    margin: 50px;
+    margin: 20px;
     max-width: 600px;
-    background-color: #e7d1ab;
+    background-color: $color-primary;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #d1d1d1;
+    border: 1px solid $grey;
+    height: 320px;
 
     > .inventory-slot {
       width: 50px;
@@ -38,8 +51,8 @@
 
       margin: 3px;
       border-radius: 10px;
-      border: 2px #303030 solid;
-      background-color: #6f6a61;
+      border: 2px $black solid;
+      background-color: $grey-dark;
 
       cursor: pointer;
 
@@ -48,7 +61,8 @@
       }
 
       &.empty {
-        background-color: #f3ead3;
+        background-color: #fff3dd;
+        font-weight: bold;
 
         &:hover {
           border: 2px #706a61 solid;
@@ -68,7 +82,7 @@
         }
 
         > .item-name {
-          color: #303030;
+          color: $black;
           text-align: center;
           display: flex;
           align-items: center;
@@ -90,21 +104,76 @@
     }
   }
 
-  > .buttons {
-    margin-left: 50px;
+  > .setup {
+    margin-left: 20px;
+    margin-right: 20px;
 
-    > button {
-      background-color: #e7d1ab;
-      color: #303030;
-      font-size: 13px;
-      font-weight: bold;
-      width: 110px;
-      height: 45px;
-      cursor: pointer;
-      border-radius: 10px;
+    > .buttons {
+      margin-top: 20px;
+      > button {
+        margin-right: 5px;
+        margin-left: 5px;
+        background-color: $color-primary;
+        color: $black;
+        font-size: 13px;
+        font-weight: bold;
+        width: 110px;
+        height: 45px;
+        cursor: pointer;
+        border-radius: 10px;
 
-      &:hover {
-        background-color: #f8e5c5;
+        &:hover {
+          background-color: #fff3dd;
+        }
+      }
+    }
+
+    .slidecontainer {
+      width: 100%;
+
+      > p {
+        color: $black;
+        margin-bottom: 5px;
+        margin-left: 5px;
+        font-size: 12px;
+      }
+
+      > .slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 50%;
+        height: 15px;
+        border-radius: 5px;
+        background: white;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
+        border: 1px solid $grey;
+      }
+
+      > .slider:hover {
+        opacity: 1;
+      }
+
+      > .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: $color-primary;
+        border: 1px solid $grey;
+        cursor: pointer;
+      }
+
+      > .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: $color-primary;
+        border: 1px solid $grey;
+        cursor: pointer;
       }
     }
   }

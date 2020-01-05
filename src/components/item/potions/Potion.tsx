@@ -1,9 +1,11 @@
 import { Item } from "../Item";
-import { Utils } from "../../../Utils";
+import { utils } from "../../../Utils";
+import { inventory } from "../../../index";
 
 export enum Potion_Type {
   Health = 1,
-  Mana = 2
+  Mana = 2,
+  Dexeterity = 3
 }
 
 interface PotionInterface {
@@ -18,34 +20,51 @@ export class Potion extends Item implements PotionInterface {
   name: string;
   imgSrc: string;
 
+  /* 
+    A new potion is composed by the type refered at @Potion_Type, the position 
+    on the array of inventory.slots, the units of each item ( with a stack size 
+      of 64 ) and the name of the item ( default value setted ).
+    Gets the specific image from the class function and adds a new slot to the
+    inventory function by using @addItem()
+   */
   constructor(
     potion_type: Potion_Type,
-    quantity: number = 1,
-    name: string = "name"
+    position: number,
+    quantity: number = 1
   ) {
-    super("potion", name, quantity);
+    super("potion", position, quantity);
 
     this.potion_type = potion_type || Potion_Type.Health;
+    this.name = this.getName(); // If needed, can be named
     this.imgSrc = this.getImageIcon();
+
+    inventory.addItem(this);
   }
 
+  /* 
+    Switch the case depending on the type of potion and logs the effect
+   */
   public use(): void {
     switch (this.potion_type) {
       case 1:
-        Utils.log("You healed for 20HP");
+        utils.log("You healed for 20HP");
         break;
       case 2:
-        Utils.log("You recovered 20 Points of Mana");
+        utils.log("You recovered 20 Points of Mana");
         break;
       case 3:
-        Utils.log("You recovered 10 Points of Dexterity");
+        utils.log("You recovered 10 Points of Dexterity");
         break;
       default:
         this.throwError("No potion type selected");
     }
-    Utils.log("Filled inventory with 10 potions");
+    console.log(this);
+    this.decrementQuantity();
   }
 
+  /* 
+    returns the image of the specific type of potion
+   */
   private getImageIcon(): string {
     switch (this.potion_type) {
       case 1:
@@ -56,9 +75,19 @@ export class Potion extends Item implements PotionInterface {
         return "dextPotion.jpg";
     }
   }
+  private getName(): string {
+    switch (this.potion_type) {
+      case 1:
+        return "Health Potion";
+      case 2:
+        return "Mana Potion";
+      case 3:
+        return "Dexterity Potion";
+    }
+  }
 
   private throwError(error: string): never {
-    Utils.log(error, "error");
+    utils.log(error, "error");
     throw new Error(error);
   }
 }
