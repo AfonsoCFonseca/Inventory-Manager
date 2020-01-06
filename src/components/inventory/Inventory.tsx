@@ -8,6 +8,7 @@ import { utils } from "../../utils";
 interface IInventoryState {
   slots: Item[];
   slotsLength: number;
+  selectedItem: Item;
 }
 
 interface IInvetoryProps {
@@ -27,6 +28,7 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     super(props);
     this.state = {
       slots: [],
+      selectedItem: null,
       slotsLength: props.slotsLength
     };
   }
@@ -40,7 +42,11 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     return this.state.slots;
   }
 
-  private setSlots(slots: Item[]): void {
+  get selectedItem(): Item {
+    return this.state.selectedItem;
+  }
+
+  public setSlots(slots: Item[]): void {
     this.setState({ slots });
   }
 
@@ -59,7 +65,7 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     specific Item to the state.slots array and 
     sets the new State for the slots. If return false, then the inventory is full
    */
-  public addItem(item: Item) {
+  public addItem(item: Item): boolean {
     if (!this.isFull()) {
       let newSlots = this.state.slots;
       newSlots.push(item);
@@ -100,6 +106,12 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
 
     return allSlots;
   }
+
+  public clearSelected(): void {
+    for (var i = 0; i < this.slots.length; i++) {
+      if (this.slots[i].selected) this.slots[i].selected = false;
+    }
+  }
   /* 
     Checks if the inventory still have slots left to fill with items
    */
@@ -113,7 +125,38 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     return slot === undefined;
   }
 
+  drawSelectedItemScreen() {
+    return (
+      <div className="item-menu">
+        {this.selectedItem ? (
+          <React.Fragment>
+            <div className="item-menu-text">
+              <p>
+                <b>Type: </b>
+                {utils.capFirstLetter(this.selectedItem.type)}
+                <b> Sub-type: </b>
+                {utils.capFirstLetter(this.selectedItem.name)}
+              </p>
+            </div>
+            <div className="item-menu-buttons">
+              <button onClick={() => this.selectedItem.use()}>Use</button>
+              <button>Delete</button>
+              <button>Inspect</button>
+            </div>{" "}
+          </React.Fragment>
+        ) : (
+          <h3>Inventory Manager</h3>
+        )}
+      </div>
+    );
+  }
+
   render() {
-    return <div className="inventory">{this.drawInventory()}</div>;
+    return (
+      <React.Fragment>
+        {this.drawSelectedItemScreen()}
+        <div className="inventory">{this.drawInventory()}</div>
+      </React.Fragment>
+    );
   }
 }

@@ -9,5 +9,8 @@ export let utils = {
   },
   randomInt(max: number, min: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  },
+  capFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   }
 };

@@ -11,7 +11,6 @@ import { utils } from "./Utils";
 let slotsLength: number = 30;
 
 export let inventory: Inventory;
-let slots: Item[];
 /* 
     When the Component mounts the DOM, it fills the inventory of random Items
     Log the number of items added to inventory
@@ -20,8 +19,9 @@ function fillInventory(): void {
   for (let i = 0; i < slotsLength; i++) {
     if (i < 10) {
       let randomPotionType = utils.randomInt(3, 1);
+      let stackSize = utils.randomInt(1, 10);
       let pos = inventory.getNextPositionAvailable();
-      if (typeof pos == "number") new Potion(randomPotionType, pos, 64);
+      if (typeof pos == "number") new Potion(randomPotionType, pos, stackSize);
     }
   }
 }
@@ -63,7 +63,7 @@ function drawSetupDiv(): JSX.Element {
       <div className="buttons">
         <button onClick={() => addPotion()}>Add Potion</button>
         <button onClick={() => addPotion()}>Add Random</button>
-        <button onClick={() => addPotion()}>Delete</button>
+        <button onClick={() => clear()}>Delete</button>
       </div>
     </div>
   );
@@ -84,8 +84,15 @@ function changeInventorySlotSize(newLength: number): void {
    */
 function addPotion(): void {
   let randomPotionType = utils.randomInt(3, 1);
+  let stackSize = utils.randomInt(1, 10);
   let pos = inventory.getNextPositionAvailable();
   if (typeof pos == "number") {
-    new Potion(randomPotionType, pos, 1);
+    new Potion(randomPotionType, pos, stackSize);
   }
+}
+/* 
+    Clears the full inventory to an empty array
+   */
+function clear(): void {
+  inventory.setSlots([]);
 }

@@ -3,11 +3,29 @@ $color-primary-light: #fff6e6;
 
 $grey: #d1d1d1;
 $grey-dark: #6f6a61;
+$grey-light: #c5c5c5;
 
 $black: #303030;
 
 p {
   font-family: Verdana, Geneva, sans-serif;
+}
+h3 {
+  font-family: Verdana, Geneva, sans-serif;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+  background-color: $color-primary;
+  color: $black;
+  font-size: 13px;
+  font-weight: bold;
+  &:hover {
+    background-color: #fff3dd;
+  }
 }
 
 .interface {
@@ -16,7 +34,7 @@ p {
   height: 100%;
   > .logs {
     margin: 20px;
-    height: 220px;
+    height: 120px;
     background-color: white;
     border-radius: 5px;
     border: 1px solid $grey;
@@ -58,6 +76,7 @@ p {
 
       &:hover {
         border: 2px #b8a994 solid;
+        background-color: $grey-light;
       }
 
       &.empty {
@@ -67,6 +86,10 @@ p {
         &:hover {
           border: 2px #706a61 solid;
         }
+      }
+
+      &.selected {
+        background-color: white;
       }
 
       > .stack {
@@ -104,6 +127,35 @@ p {
     }
   }
 
+  .item-menu {
+    width: 100%;
+    margin-top: 15px;
+    height: 50px;
+    > button {
+      width: 110px;
+      height: 25px;
+    }
+    > h3 {
+      color: $black;
+      text-align: center;
+      margin: 0;
+    }
+
+    > .item-menu-text {
+      width: 100%;
+      text-align: center;
+      > p {
+        font-size: 13px;
+        color: $black;
+      }
+    }
+    > .item-menu-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
   > .setup {
     margin-left: 20px;
     margin-right: 20px;
@@ -111,20 +163,8 @@ p {
     > .buttons {
       margin-top: 20px;
       > button {
-        margin-right: 5px;
-        margin-left: 5px;
-        background-color: $color-primary;
-        color: $black;
-        font-size: 13px;
-        font-weight: bold;
         width: 110px;
         height: 45px;
-        cursor: pointer;
-        border-radius: 10px;
-
-        &:hover {
-          background-color: #fff3dd;
-        }
       }
     }
 

@@ -1,3 +1,4 @@
+import { MouseEvent } from "react";
 import { inventory } from "../../index";
 
 export interface ItemInterface {
@@ -19,6 +20,8 @@ export abstract class Item implements ItemInterface {
   type: string; //What type represents, Potion, Weapon, Armor
   imgSrc: string; //name of the jpg file
   position: number; //the position represented on the inventory slots array
+  selected: boolean = false;
+  name: string;
 
   constructor(type: string, position: number, quantity?: number) {
     this.type = type;
@@ -49,4 +52,11 @@ export abstract class Item implements ItemInterface {
   delete() {}
 
   use() {}
+
+  itemSelected() {
+    inventory.clearSelected();
+    this.selected = true;
+    inventory.setState({ selectedItem: this });
+    //this.use();
+  }
 }
