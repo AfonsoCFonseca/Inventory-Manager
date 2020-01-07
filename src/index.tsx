@@ -62,8 +62,8 @@ function drawSetupDiv(): JSX.Element {
       </div>
       <div className="buttons">
         <button onClick={() => addPotion()}>Add Potion</button>
-        <button onClick={() => addPotion()}>Add Random</button>
-        <button onClick={() => clear()}>Delete</button>
+        <button onClick={() => console.log( inventory.state )}>Log</button>
+        <button onClick={() => clear()}>Clear</button>
       </div>
     </div>
   );

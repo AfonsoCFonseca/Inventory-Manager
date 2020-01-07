@@ -32,6 +32,7 @@ export class Potion extends Item implements PotionInterface {
     position: number,
     quantity: number = 1
   ) {
+
     super("potion", position, quantity);
 
     this.potion_type = potion_type || Potion_Type.Health;
@@ -62,9 +63,6 @@ export class Potion extends Item implements PotionInterface {
     this.decrementQuantity();
   }
 
-  /* 
-    returns the image of the specific type of potion
-   */
   private getImageIcon(): string {
     switch (this.potion_type) {
       case 1:

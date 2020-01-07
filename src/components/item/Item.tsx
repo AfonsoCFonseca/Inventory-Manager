@@ -46,17 +46,23 @@ export abstract class Item implements ItemInterface {
    */
   protected decrementQuantity(specific?: number): void {
     this.quantity--;
-    inventory.removeItem(this);
+    if (this.quantity == 0){
+      inventory.removeItem(this);
+    }
+    inventory.setState({})
   }
 
   delete() {}
 
   use() {}
 
+  /* 
+    This function sets the clicked Item to the Item and Inventory class as selected item
+    and then sets the state of Inventory, so it can renders the frame around the item 
+   */
   itemSelected() {
     inventory.clearSelected();
     this.selected = true;
     inventory.setState({ selectedItem: this });
-    //this.use();
   }
 }
