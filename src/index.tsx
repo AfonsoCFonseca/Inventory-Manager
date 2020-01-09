@@ -6,6 +6,7 @@ import "../public/scss/style.scss";
 import { Inventory } from "./components/inventory/Inventory";
 import { Item } from "./components/item/Item";
 import { Potion, Potion_Type } from "./components/item/potions/Potion";
+import { Weapon } from "./components/item/weapons/Weapon"
 import { utils } from "./Utils";
 
 let slotsLength: number = 30;
@@ -18,10 +19,7 @@ export let inventory: Inventory;
 function fillInventory(): void {
   for (let i = 0; i < slotsLength; i++) {
     if (i < 10) {
-      let randomPotionType = utils.randomInt(3, 1);
-      let stackSize = utils.randomInt(1, 10);
-      let pos = inventory.getNextPositionAvailable();
-      if (typeof pos == "number") new Potion(randomPotionType, pos, stackSize);
+      addRandomItem()
     }
   }
 }
@@ -61,7 +59,7 @@ function drawSetupDiv(): JSX.Element {
         />
       </div>
       <div className="buttons">
-        <button onClick={() => addPotion()}>Add Potion</button>
+        <button onClick={() => addRandomItem()}>Add Random</button>
         <button onClick={() => console.log( inventory.state )}>Log</button>
         <button onClick={() => clear()}>Clear</button>
       </div>
@@ -79,15 +77,22 @@ function changeInventorySlotSize(newLength: number): void {
 }
 
 /* 
-    Function called by one of the developmen buttons (made only for development purposes),
-     adds a potion to the inventory
+    Functions call everytime an random Item need to be created
+    it will randomize between Potio, Weapon or Armor
    */
-function addPotion(): void {
-  let randomPotionType = utils.randomInt(3, 1);
+function addRandomItem(): void {
+  let randomItemType = utils.randomInt(2, 1);
   let stackSize = utils.randomInt(1, 10);
   let pos = inventory.getNextPositionAvailable();
   if (typeof pos == "number") {
-    new Potion(randomPotionType, pos, stackSize);
+    switch( randomItemType ){
+      case 1: 
+        new Potion( pos, stackSize);
+      break;
+      case 2: 
+        new Weapon( pos );
+      break;
+    }
   }
 }
 /* 

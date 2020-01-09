@@ -28,14 +28,14 @@ export class Potion extends Item implements PotionInterface {
     inventory function by using @addItem()
    */
   constructor(
-    potion_type: Potion_Type,
     position: number,
-    quantity: number = 1
+    quantity: number = 1,
+    potion_type?: Potion_Type
   ) {
 
     super("potion", position, quantity);
 
-    this.potion_type = potion_type || Potion_Type.Health;
+    this.potion_type = potion_type || utils.randomInt(3, 1);
     this.name = this.getName(); // If needed, can be named
     this.imgSrc = this.getImageIcon();
 

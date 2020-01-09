@@ -3,7 +3,7 @@ import * as React from "react";
 import { Potion, Potion_Type } from "../item/potions/Potion";
 import { Item } from "../item/Item";
 import { Draw } from "../../drawer/drawer";
-import { utils } from "../../utils";
+import { utils } from "../../Utils";
 
 interface IInventoryState {
   slots: Item[];
@@ -110,21 +110,6 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     return false;
   }
 
-  /* 
-    Iterates every position of the @state.slots, depending on the item.type
-    calls the specific function of the class Draw to return the JSX.Element 
-   */
-  private drawInventory(): Array<JSX.Element> {
-    let allSlots: Array<JSX.Element> = [];
-    for (let i = 0; i < this.state.slotsLength; i++) {
-      if (this.state.slots[i] && this.state.slots[i].type == "potion") {
-        allSlots.push(Draw.item(i, this.state.slots[i]));
-      } else allSlots.push(Draw.emptySlot(i));
-    }
-
-    return allSlots;
-  }
-
   public clearSelected(): void {
     for (var i = 0; i < this.slots.length; i++) {
       if (this.slots[i].selected) this.slots[i].selected = false;
@@ -141,6 +126,21 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
    */
   private isEmpty(slot: Item): boolean {
     return slot === undefined;
+  }
+
+    /* 
+    Iterates every position of the @state.slots, depending on the item.type
+    calls the specific function of the class Draw to return the JSX.Element 
+   */
+  private drawInventory(): Array<JSX.Element> {
+    let allSlots: Array<JSX.Element> = [];
+    for (let i = 0; i < this.state.slotsLength; i++) {
+      if (this.state.slots[i] ) {
+        allSlots.push(Draw.item(i, this.state.slots[i]));
+      } else allSlots.push(Draw.emptySlot(i));
+    }
+
+    return allSlots;
   }
 
   drawSelectedItemScreen() {
