@@ -5,7 +5,7 @@ import { inventory } from "../../../index";
 export enum Potion_Type {
   Health = 1,
   Mana = 2,
-  Dexeterity = 3
+  Dexterity = 3
 }
 
 interface PotionInterface {
@@ -32,7 +32,6 @@ export class Potion extends Item implements PotionInterface {
     quantity: number = 1,
     potion_type?: Potion_Type
   ) {
-
     super("potion", position, quantity);
 
     this.potion_type = potion_type || utils.randomInt(3, 1);
