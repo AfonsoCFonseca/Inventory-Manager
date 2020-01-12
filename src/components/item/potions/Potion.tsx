@@ -1,6 +1,6 @@
 import { Item } from "../Item";
 import { utils } from "../../../Utils";
-import { inventory } from "../../../index";
+import { inventory, player } from "../../../index";
 
 export enum Potion_Type {
   Health = 1,
@@ -19,6 +19,7 @@ export class Potion extends Item implements PotionInterface {
   potion_type: Potion_Type;
   name: string;
   imgSrc: string;
+  value: number;
 
   /* 
     A new potion is composed by the type refered at @Potion_Type, the position 
@@ -43,17 +44,27 @@ export class Potion extends Item implements PotionInterface {
 
   /* 
     Switch the case depending on the type of potion and logs the effect
+    But first checks if the player is viable to use the potion
    */
-  public use(): void {
+  public use(): void | boolean {
+    if( player.isFull( this.potion_type ) )
+      return true
+      
     switch (this.potion_type) {
       case 1:
+        this.value = 20
         utils.log("You healed for 20HP");
+        player.drink( this )
         break;
       case 2:
-        utils.log("You recovered 20 Points of Mana");
+        this.value = 50
+        utils.log("You recovered 50 Points of Mana");
+        player.drink( this )
         break;
       case 3:
+        this.value = 10 
         utils.log("You recovered 10 Points of Dexterity");
+        player.drink( this )
         break;
       default:
         this.throwError("No potion type selected");

@@ -1,6 +1,6 @@
 import { Item } from "../Item";
 import { utils } from "../../../Utils";
-import { inventory } from "../../../index";
+import { inventory, player } from "../../../index";
 import { axe, sword, gun, dagger, bow,Weapon_Type  } from './WeaponsArmory'
 
 export interface WeaponInterface {
@@ -18,12 +18,19 @@ export class Weapon extends Item implements WeaponInterface{
     damage: number;
     range: number;
     speed: number;
-
+    
+     /* 
+   Sets the Super Class Item, names the item, gets the correct path for the icon,
+   gets the selected weapon WeaponStats from the script WeaponsArmory. This script keep record 
+   of all weapons stats in JSON format. At the end of the constructor the item is added to the
+   Inventory class
+   */
     constructor( position: number, weapon_type?:Weapon_Type ){
         super("weapon", position, 1);
         
         this.weapon_type = weapon_type || utils.randomInt(5, 1)
         this.imgSrc = this.getImageIcon();
+        this.name = this.imgSrc.replace(/\.[^/.]+$/, "")
         
         let currentWeapon = this.getWeaponStats();
         this.damage = currentWeapon.damage
@@ -35,8 +42,8 @@ export class Weapon extends Item implements WeaponInterface{
     }
     
 
-    use(){
-
+    public use(): void {
+        player.attack()
     }
      /* 
     Goes to the armory of weapons and picks the desired WeaponInterface

@@ -7,11 +7,13 @@ import { Inventory } from "./components/inventory/Inventory";
 import { Item } from "./components/item/Item";
 import { Potion, Potion_Type } from "./components/item/potions/Potion";
 import { Weapon } from "./components/item/weapons/Weapon"
+import { Player } from "./components/player/player"
 import { utils } from "./Utils";
 
 let slotsLength: number = 30;
 
 export let inventory: Inventory;
+export let player = new Player()
 /* 
     When the Component mounts the DOM, it fills the inventory of random Items
     Log the number of items added to inventory
@@ -38,6 +40,7 @@ ReactDOM.render(
 );
 
 fillInventory();
+
 
 /* 
     Draws the setup on the render of the sliders and every developement buttons
