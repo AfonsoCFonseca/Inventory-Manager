@@ -6,6 +6,7 @@ export interface ItemInterface {
   type: string;
   imgSrc: string;
   position: number;
+  equipped: boolean | null
   delete(): void;
   use(): void;
 }
@@ -22,6 +23,7 @@ export abstract class Item implements ItemInterface {
   position: number; //the position represented on the inventory slots array
   selected: boolean = false;
   name: string;
+  equipped: boolean | null = null // used only for weapons or armor
 
   constructor(type: string, position: number, quantity?: number) {
     this.type = type;

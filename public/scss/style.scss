@@ -88,6 +88,11 @@ button {
         }
       }
 
+      &.equipped {
+        background-color: red;
+        border: 2px red solid;
+      }
+
       &.selected {
         background-color: white;
       }

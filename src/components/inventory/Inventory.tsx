@@ -9,6 +9,7 @@ interface IInventoryState {
   slots: Item[];
   slotsLength: number;
   selectedItem: Item;
+  equippedPostion: number | number[] | null;
 }
 
 interface IInvetoryProps {
@@ -28,6 +29,7 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     super(props);
     this.state = {
       slots: [],
+      equippedPostion: null,
       selectedItem: null,
       slotsLength: props.slotsLength
     };
@@ -75,12 +77,14 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
 
   /* 
     Removes the Item from array of slots and sets the selectedItem to null
-    so the item-menu screen can refresh too 
+    so the item-menu screen can refresh too. If item is equipped, declares the 
+    variables to false, before deleting
    */
   public removeItem(item: Item): void {
     let newSlots = this.slots;
     newSlots.splice(item.position, 1);
     this.updatePositionOfItems();
+    this.selectedItem.equipped = false
     this.setState({
       slots: newSlots,
       selectedItem: null
@@ -134,7 +138,7 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     let allSlots: Array<JSX.Element> = [];
     for (let i = 0; i < this.state.slotsLength; i++) {
       if (this.state.slots[i]) {
-        allSlots.push(Draw.item(i, this.state.slots[i]));
+        allSlots.push(Draw.item(i, this.state.slots[i] ) );
       } else allSlots.push(Draw.emptySlot(i));
     }
 

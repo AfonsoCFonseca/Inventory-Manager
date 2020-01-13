@@ -12,5 +12,11 @@ webpack, sass, react, typescript
 
 Por fazer:
 
-Deve ser demosntrado no inventory quando uma arma esta equipada
+Falta fazer o design da arma/armadura equipada
 Deve ser feita a acção de ataque para a weapon equipada
+
+Armor.
+    Deve trocar de equiped dependente do armor slot
+
+nice to have
+    Mostrar player health, mana, dexterity

@@ -13,7 +13,7 @@ export interface WeaponInterface {
 
 
 export class Weapon extends Item implements WeaponInterface{
-    weapon_type: Weapon_Type;
+    public weapon_type: Weapon_Type;
     durability: number;
     damage: number;
     range: number;
@@ -40,7 +40,6 @@ export class Weapon extends Item implements WeaponInterface{
 
         inventory.addItem(this);
     }
-    
 
     public use(): void {
         player.attack()

@@ -1,5 +1,10 @@
 import { utils } from "../../Utils";
 import { Potion } from "../item/potions/Potion";
+import { Weapon } from "../item/weapons/Weapon";
+import { Item } from "../item/Item";
+import { inventory } from "../../index";
+//import { Armor } from "../item/weapons/Potion";
+
 
 interface PlayerInterface {
   health: number;
@@ -10,7 +15,7 @@ interface PlayerInterface {
 }
 
 interface Equipment {
-  weapon: string;
+  weapon: Weapon | null;
   head: string;
   chest: string;
   legs: string;
@@ -23,7 +28,7 @@ export class Player implements PlayerInterface {
   dexterity: number = 10;
   strength: number = 25;
   armor: Equipment = {
-    weapon: "axe",
+    weapon: null,
     head: "head",
     chest: "chest",
     legs: "legs",
@@ -62,7 +67,24 @@ export class Player implements PlayerInterface {
     else return false
   }
 
-  public equip(): void {}
+  /* 
+   equip function is responsible for understanding what type of item is being equipped
+   and with that unequiped previous item of that slot equipment ( if is not null ) and equip
+   the new one, after setsState to the inventory so the item trigger the render actions and 
+   css classes of the equipped item
+   */
+  public equip( item: Weapon ): void {
+    if( item.type == "weapon" ){
+      if( this.armor.weapon ) this.armor.weapon.equipped = false
+      this.armor.weapon = item
+    }
+    else if( item.type == "armor" ){
+// TODO Inser armor here
+    } 
+    item.equipped = true
+    inventory.setState({})
+    utils.log( `The ${ item.name } equipped` )
+  }
 
    /* 
   An generic function made for increment or decrement the stats of the Player,
