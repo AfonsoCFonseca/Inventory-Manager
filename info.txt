@@ -10,9 +10,7 @@ webpack, sass, react, typescript
 
 
 
-Por fazer,
+Por fazer:
 
-Mudar o Selected Item Screen dependente do item que se está a usar
-Ao selecionar um Weapon o Selected Item Screen deve ter o botão Attack e Equip
 Deve ser demosntrado no inventory quando uma arma esta equipada
 Deve ser feita a acção de ataque para a weapon equipada

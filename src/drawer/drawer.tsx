@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Item } from "../components/item/Item";
+import { Inventory } from "../components/inventory/Inventory";
 import { utils } from "../Utils";
 
 export class Draw {
@@ -30,5 +31,52 @@ export class Draw {
         </div>
       </div>
     );
+  }
+
+  static selectedItemScreenButtons(inventory: Inventory): JSX.Element {
+    let buttons: JSX.Element;
+    switch (inventory.selectedItem.type) {
+      case "potion":
+        buttons = (
+          <React.Fragment>
+            <button onClick={() => inventory.selectedItem.use()}>Drink</button>
+            <button>Inspect</button>
+            <button
+              onClick={() => inventory.removeItem(inventory.selectedItem)}
+            >
+              Delete
+            </button>
+          </React.Fragment>
+        );
+        break;
+      case "weapon":
+        buttons = (
+          <React.Fragment>
+            <button onClick={() => inventory.selectedItem.use()}>Attack</button>
+            <button>Equip</button>
+            <button
+              onClick={() => inventory.removeItem(inventory.selectedItem)}
+            >
+              Delete
+            </button>
+          </React.Fragment>
+        );
+        break;
+      case "armor":
+        buttons = (
+          <React.Fragment>
+            <button onClick={() => inventory.selectedItem.use()}>Use</button>
+            <button>Equip</button>
+            <button
+              onClick={() => inventory.removeItem(inventory.selectedItem)}
+            >
+              Delete
+            </button>
+          </React.Fragment>
+        );
+        break;
+    }
+
+    return <div className="item-menu-buttons">{buttons}</div>;
   }
 }

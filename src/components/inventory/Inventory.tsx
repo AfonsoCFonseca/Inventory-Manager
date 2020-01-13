@@ -46,14 +46,14 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     return this.state.selectedItem;
   }
 
- /* 
+  /* 
     The setters from the core of the class. Slots are the structure of the class
     and the slotsLength stands for the size of the inventory
    */
   public setSlots(slots: Item[]): void {
     this.setState({ slots });
   }
-  public setSlotsLength(newLength: number):void {
+  public setSlotsLength(newLength: number): void {
     this.setState({
       slotsLength: newLength
     });
@@ -78,23 +78,21 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     so the item-menu screen can refresh too 
    */
   public removeItem(item: Item): void {
-
-      let newSlots = this.slots;
-      newSlots.splice(item.position, 1);
-      this.updatePositionOfItems()
-      this.setState({
-        slots: newSlots,
-        selectedItem: null
-      })
-
+    let newSlots = this.slots;
+    newSlots.splice(item.position, 1);
+    this.updatePositionOfItems();
+    this.setState({
+      slots: newSlots,
+      selectedItem: null
+    });
   }
-   /* 
+  /* 
     This function updates the position of each Item inside the inventory
     this way it keeps the correct order when removeItem() is called
    */
   private updatePositionOfItems(): void {
     for (var i = 0; i < this.slots.length; i++) {
-      this.slots[i].position = i
+      this.slots[i].position = i;
     }
   }
 
@@ -128,14 +126,14 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
     return slot === undefined;
   }
 
-    /* 
+  /* 
     Iterates every position of the @state.slots, depending on the item.type
     calls the specific function of the class Draw to return the JSX.Element 
    */
   private drawInventory(): Array<JSX.Element> {
     let allSlots: Array<JSX.Element> = [];
     for (let i = 0; i < this.state.slotsLength; i++) {
-      if (this.state.slots[i] ) {
+      if (this.state.slots[i]) {
         allSlots.push(Draw.item(i, this.state.slots[i]));
       } else allSlots.push(Draw.emptySlot(i));
     }
@@ -156,11 +154,7 @@ export class Inventory extends React.Component<IInvetoryProps, IInventoryState>
                 {utils.capFirstLetter(this.selectedItem.name)}
               </p>
             </div>
-            <div className="item-menu-buttons">
-              <button onClick={() => this.selectedItem.use()}>Use</button>
-              <button onClick={ () => this.removeItem( this.selectedItem )}>Delete</button>
-              <button>Inspect</button>
-            </div>
+            {Draw.selectedItemScreenButtons(this)}
           </React.Fragment>
         ) : (
           <h3>Inventory Manager</h3>
