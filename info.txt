@@ -12,7 +12,6 @@ webpack, sass, react, typescript
 
 Por fazer:
 
-Falta fazer o design da arma/armadura equipada
 Deve ser feita a acção de ataque para a weapon equipada
 
 Armor.

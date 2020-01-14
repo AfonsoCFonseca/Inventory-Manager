@@ -15,10 +15,13 @@ export class Draw {
     return (
       <div
         key={`inventory-slot-${i} `}
-        className={`inventory-slot ${item.type} ${selected} ${equippedClass}`}
+        className={`inventory-slot ${item.type} ${selected}`}
         onClick={() => item.itemSelected()}
       >
         <div className="stack">
+          { equippedClass ? 
+            <img className="equipped-style" src='../public/images/armorIcon.png'/>
+            : null }
           <p className="quantity">{item.quantity}</p>
           <img className="icon" src={`../../public/images/${imageFile}`}></img>
           {/* <p className="item-name">{item.name}</p> */}

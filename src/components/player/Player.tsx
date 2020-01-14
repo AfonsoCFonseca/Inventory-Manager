@@ -38,8 +38,21 @@ export class Player implements PlayerInterface {
 
   constructor() {}
   
+  /* 
+   Checks the weapon equipped by the player and logs the calculated damage of the weapon
+   as well as the range of the attack
+   */
   public attack(): void {
-    console.log("Attacking")
+    let usedWeapon = this.armor.weapon
+    let damage = this.calculateAttack( usedWeapon.damage )
+    utils.log( `Attacking with ${ usedWeapon.name } for ${ damage } with a range of ${ usedWeapon.range }` )
+  }
+
+  /* 
+    Calculates some basic math to give a more realistic damage count
+   */
+  private calculateAttack( weaponAttack: number ): number{
+    return ( weaponAttack * this.strength ) / 10
   }
 
   /* 
@@ -68,7 +81,7 @@ export class Player implements PlayerInterface {
   }
 
   /* 
-   equip function is responsible for understanding what type of item is being equipped
+   Equip function is responsible for understanding what type of item is being equipped
    and with that unequiped previous item of that slot equipment ( if is not null ) and equip
    the new one, after setsState to the inventory so the item trigger the render actions and 
    css classes of the equipped item

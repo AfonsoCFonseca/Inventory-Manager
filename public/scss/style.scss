@@ -102,6 +102,17 @@ button {
         height: 100%;
         position: relative;
 
+        >.equipped-style {
+          width: 15px;
+          position: absolute;
+          background-color: white;
+          border-radius: 25px;
+          padding: 1px;
+          top: -6px;
+          left: -6px;
+          border: 1px solid $black;
+        }
+
         > p {
           position: absolute;
           margin: 0;

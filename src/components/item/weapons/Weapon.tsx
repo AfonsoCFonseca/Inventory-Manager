@@ -42,6 +42,7 @@ export class Weapon extends Item implements WeaponInterface{
     }
 
     public use(): void {
+        player.equip( this )
         player.attack()
     }
      /* 
