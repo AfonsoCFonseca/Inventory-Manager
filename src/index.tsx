@@ -7,6 +7,7 @@ import { Inventory } from "./components/inventory/Inventory";
 import { Item } from "./components/item/Item";
 import { Potion, Potion_Type } from "./components/item/potions/Potion";
 import { Weapon } from "./components/item/weapons/Weapon"
+import { Armor } from "./components/item/armor/Armor"
 import { Player } from "./components/player/player"
 import { utils } from "./Utils";
 
@@ -20,7 +21,7 @@ export let player = new Player()
    */
 function fillInventory(): void {
   for (let i = 0; i < slotsLength; i++) {
-    if (i < 10) {
+    if (i < 25) {
       addRandomItem()
     }
   }
@@ -84,7 +85,7 @@ function changeInventorySlotSize(newLength: number): void {
     it will randomize between Potio, Weapon or Armor
    */
 function addRandomItem(): void {
-  let randomItemType = utils.randomInt(2, 1);
+  let randomItemType = utils.randomInt(3, 1);
   let stackSize = utils.randomInt(1, 10);
   let pos = inventory.getNextPositionAvailable();
   if (typeof pos == "number") {
@@ -94,6 +95,9 @@ function addRandomItem(): void {
       break;
       case 2: 
         new Weapon( pos );
+      break;
+      case 3:
+        new Armor( pos );
       break;
     }
   }

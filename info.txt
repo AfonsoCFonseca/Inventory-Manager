@@ -12,7 +12,8 @@ webpack, sass, react, typescript
 
 Por fazer:
 
-Deve ser feita a acção de ataque para a weapon equipada
+Weapon
+    Trocar pela logica de json para as weapons e random da posicao desse json
 
 Armor.
     Deve trocar de equiped dependente do armor slot
