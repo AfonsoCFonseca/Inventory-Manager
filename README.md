@@ -19,7 +19,11 @@ The child classes got some detailed information and funcionality , like the enum
 
 ### Screenshots ###
 
-<img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-05 at 21.22.27.png'>
-<img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-06 at 23.27.07.png'>
-<img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-14 at 23.27.07.png'>
-<img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-25 at 08.42.37.png'>
+<p float="left">
+  <img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-05 at 21.22.27.png'>
+  <img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-06 at 23.27.07.png'>
+</p>
+<p float="left">
+  <img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-14 at 23.27.07.png'>
+  <img src='https://github.com/AfonsoCFonseca/Inventory-Manager/blob/master/screenshots/Screen Shot 2020-01-25 at 08.42.37.png'>
+</p>
