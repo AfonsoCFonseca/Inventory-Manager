@@ -43,6 +43,10 @@ export class Armor extends Item implements ArmorInterface {
         inventory.addItem( this )
     }
 
+    public use(): void {
+        player.equip( this )
+    }
+
     /* 
     Makes a random pick on the array, selecting the armor
     piece selected, after, removes it from array.So it doesn't show repeated 
@@ -54,4 +58,6 @@ export class Armor extends Item implements ArmorInterface {
         arrayOfUnusedItems.splice(pos, 1)
         return currentItem
     }
+
+
 }

@@ -3,7 +3,7 @@ import { Potion } from "../item/potions/Potion";
 import { Weapon } from "../item/weapons/Weapon";
 import { Item } from "../item/Item";
 import { inventory } from "../../index";
-//import { Armor } from "../item/weapons/Potion";
+import { Armor } from "../item/armor/Armor";
 
 
 interface PlayerInterface {
@@ -15,11 +15,15 @@ interface PlayerInterface {
 }
 
 interface Equipment {
-  weapon: Weapon | null;
-  head: string;
-  chest: string;
-  legs: string;
-  boots: string;
+    weapon: Weapon | null;
+    belt: Armor | null,
+    boots: Armor | null,
+    chest: Armor | null,
+    hands: Armor | null,
+    head: Armor | null,
+    legs: Armor | null,
+    ring: Armor | null,
+    shoulders: Armor | null
 }
 
 export class Player implements PlayerInterface {
@@ -29,10 +33,14 @@ export class Player implements PlayerInterface {
   strength: number = 25;
   armor: Equipment = {
     weapon: null,
-    head: "head",
-    chest: "chest",
-    legs: "legs",
-    boots: "boots"
+    belt: null,
+    boots: null,
+    chest: null,
+    hands: null,
+    head: null,
+    legs: null,
+    ring: null,
+    shoulders: null
   };
   
 
@@ -86,19 +94,18 @@ export class Player implements PlayerInterface {
    the new one, after setsState to the inventory so the item trigger the render actions and 
    css classes of the equipped item
    */
-  public equip( item: Weapon ): void {
+  public equip( item: Weapon | Armor ): void {
     if( item.type == "weapon" ){
       if( this.armor.weapon ) this.armor.weapon.equipped = false
-      this.armor.weapon = item
+      this.armor.weapon = item as Weapon
     }
     else if( item.type == "armor" ){
-// TODO Inser armor here
+      this.armor[item.name] = item as Armor
     } 
     item.equipped = true
     inventory.setState({})
     utils.log( `The ${ item.name } equipped` )
   }
-
    /* 
   An generic function made for increment or decrement the stats of the Player,
   can be used for items, equips or weapons. It's written with a switch but

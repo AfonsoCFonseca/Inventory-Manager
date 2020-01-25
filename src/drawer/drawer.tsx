@@ -3,6 +3,7 @@ import { Item } from "../components/item/Item";
 import { Inventory } from "../components/inventory/Inventory";
 import { utils } from "../Utils";
 import { Weapon } from "../components/item/weapons/Weapon";
+import { Armor } from "../components/item/armor/Armor";
 
 import { player } from "..";
 
@@ -76,7 +77,7 @@ export class Draw {
         buttons = (
           <React.Fragment>
             <button onClick={() => inventory.selectedItem.use()}>Use</button>
-            <button>Equip</button>
+            <button onClick={ () => player.equip( inventory.selectedItem as Armor ) }>Equip</button>
             <button
               onClick={() => inventory.removeItem(inventory.selectedItem)}
             >
