@@ -17,6 +17,14 @@ Each of this Items got generic specs refered on the interface ItemInterface, lik
 
 The child classes got some detailed information and funcionality , like the enumerator Potion_Type on the Potion class that details between ( health, mana or dexterity ) potion types or the overriden use( ) function on the class that simulates an attack, depending the weapon you got equipped
 
+### State of art ###
+
+The project is finished but there's a few things that could give more structure to the project, as :
+ - Armor and Player class should have the position of the  piece of armor equipped
+ - Player health, mana, armor
+ - A relation with an external project/class like Enemy or Overworld
+ - The code lacks consistency between Armor and Weapon class
+
 ### Screenshots ###
 
 <p float="left">
